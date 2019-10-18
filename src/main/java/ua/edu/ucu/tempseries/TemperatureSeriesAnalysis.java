@@ -135,7 +135,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     private void checklen() {
-        if (len == 0) {
+        if (temperatureSeries.length == 0) {
             throw new IllegalArgumentException();
         }
     }
