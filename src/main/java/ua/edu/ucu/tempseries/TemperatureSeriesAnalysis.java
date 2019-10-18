@@ -125,8 +125,10 @@ public class TemperatureSeriesAnalysis {
 
     public TempSummaryStatistics summaryStatistics() {
         checklen();
+        final TempSummaryStatistics summary = new TempSummaryStatistics(
+            average(), deviation(), min(), max());
 
-        return new TempSummaryStatistics(average(), deviation(), min(), max());
+        return summary;
     }
 
     public int addTemps(double... temps) {

@@ -7,12 +7,11 @@ public class TempSummaryStatistics {
     public double maxTemp;
 
     protected TempSummaryStatistics(double avg, double dev,
-     double min,
-     double max) {
+     double min, double max) {
         avgtemp = avg;
         devTemp = dev;
         minTemp = min;
         maxTemp = max;
     }
-    
+
 }
