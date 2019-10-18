@@ -34,7 +34,7 @@ public class TemperatureSeriesAnalysis {
             variation += (d - avg) * (d - avg);
         }
 
-        return Math.sqrt((variation / (double) temperatureSeries.length));
+        return Math.sqrt(variation / (double) temperatureSeries.length);
     }
 
     public double min() {
@@ -82,11 +82,10 @@ public class TemperatureSeriesAnalysis {
 
         for (int i = 1; i < len; i++) {
             distance = Math.abs(temperatureSeries[i] - tempValue);
-            if (distance <= minDistance) {
-                if (temperatureSeries[i] == minDistance) {
-                    minDistance = temperatureSeries[i];
-                }
+            if (distance <= minDistance && temperatureSeries[i] == minDistance) {
+                minDistance = temperatureSeries[i];
             }
+
         }
 
         return minDistance;
