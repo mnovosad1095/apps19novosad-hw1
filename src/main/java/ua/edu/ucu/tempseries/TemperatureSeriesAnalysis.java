@@ -3,6 +3,7 @@ package ua.edu.ucu.tempseries;
 public class TemperatureSeriesAnalysis {
 
     private double[] temperatureSeries;
+    int len;
 
     public TemperatureSeriesAnalysis() {
 
@@ -10,10 +11,13 @@ public class TemperatureSeriesAnalysis {
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         this.temperatureSeries = temperatureSeries;
+        len = temperatureSeries.length;
     }
 
     public double average() {
         double sum = 0;
+
+        checklen();
 
         for (double d : temperatureSeries) {
             sum += d;
@@ -25,6 +29,8 @@ public class TemperatureSeriesAnalysis {
     public double deviation() {
         double avg = average();
         double variation = 0;
+
+        checklen();
         
         for (double d : temperatureSeries) {
             variation += Math.pow((d - avg), 2);
@@ -35,7 +41,8 @@ public class TemperatureSeriesAnalysis {
 
     public double min() {
         double min = temperatureSeries[0];
-        int len = temperatureSeries.length;
+        
+        checklen();
 
         for ( int i = 1; i < len; i++ ){
             if (temperatureSeries[i] < min) {
@@ -48,7 +55,8 @@ public class TemperatureSeriesAnalysis {
 
     public double max() {
         double max = temperatureSeries[0];
-        int len = temperatureSeries.length;
+
+        checklen();
 
         for ( int i = 1; i < len; i++ ){
             if (temperatureSeries[i] > max) {
@@ -60,26 +68,79 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double findTempClosestToZero() {
-        return 0;
+        checklen();
+
+        return findTempClosestToValue(0);
     }
 
     public double findTempClosestToValue(double tempValue) {
-        return 0;
+        double minDistance = Math.abs(temperatureSeries[0] - tempValue);
+        double distance;
+        int len = temperatureSeries.length;
+
+        checklen();
+
+        for ( int i = 1; i < len; i++ ) {
+            distance = Math.abs(temperatureSeries[i] - tempValue);
+            if (distance <= minDistance) {
+                minDistance = (temperatureSeries[i] == minDistance) ? 
+                distance: minDistance;
+            }
+        }
+
+        return minDistance;
     }
 
     public double[] findTempsLessThen(double tempValue) {
-        return null;
+        double[] values = new double[temperatureSeries.length];
+        int i = 0;
+
+        checklen();
+
+        for (double d : temperatureSeries) {
+            if (d < tempValue){
+                values[i] = d;
+                i++;
+            }    
+        }
+
+        return values;
     }
 
     public double[] findTempsGreaterThen(double tempValue) {
-        return null;
+        double[] values = new double[temperatureSeries.length];
+        int i = 0;
+
+        checklen();
+
+        for (double d : temperatureSeries) {
+            if (d > tempValue){
+                values[i] = d;
+                i++;
+            }    
+        }
+
+        return values;
     }
 
-    public TempSummaryStatistics summaryStatistics() {
-        return null;
+    public TempSummaryStatistics summaryStatistics() { 
+        checklen();
+        
+        return new TempSummaryStatistics(
+            average(),
+            deviation(),
+            min(),
+            max()
+        );
     }
 
     public int addTemps(double... temps) {
         return 0;
+    }
+
+    private void checklen() {
+        if (len == 0) {
+            throw new IllegalArgumentException();
+        }
     }
 }

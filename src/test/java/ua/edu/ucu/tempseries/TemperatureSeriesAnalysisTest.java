@@ -2,14 +2,13 @@ package ua.edu.ucu.tempseries;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import org.junit.Ignore;
 
 public class TemperatureSeriesAnalysisTest {
 
     @Test
     public void testAverageWithOneElementArray() {
         // setup input data and expected result
-        double[] temperatureSeries = {-1.0};
+        double[] temperatureSeries = { -1.0 };
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double expResult = -1.0;
 
@@ -20,7 +19,6 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException.class)
     public void testAverageWithEmptyArray() {
         double[] temperatureSeries = {};
@@ -30,17 +28,15 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.average();
     }
 
-    @Ignore
     @Test
     public void testAverage() {
-        double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
+        double[] temperatureSeries = { 3.0, -5.0, 1.0, 5.0 };
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double expResult = 1.0;
 
         double actualResult = seriesAnalysis.average();
-        
-        assertEquals(expResult, actualResult, 0.00001);        
+
+        assertEquals(expResult, actualResult, 0.00001);
     }
-    
 
 }
