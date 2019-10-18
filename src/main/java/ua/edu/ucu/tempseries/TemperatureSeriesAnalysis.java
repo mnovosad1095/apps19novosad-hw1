@@ -82,7 +82,8 @@ public class TemperatureSeriesAnalysis {
 
         for (int i = 1; i < len; i++) {
             distance = Math.abs(temperatureSeries[i] - tempValue);
-            if (distance <= minDistance && temperatureSeries[i] == minDistance) {
+            if (distance <= minDistance &&
+             temperatureSeries[i] == minDistance) {
                 minDistance = temperatureSeries[i];
             }
 
@@ -125,10 +126,10 @@ public class TemperatureSeriesAnalysis {
 
     public TempSummaryStatistics summaryStatistics() {
         checklen();
-        final TempSummaryStatistics summary = new TempSummaryStatistics(
+        final TempSummaryStatistics summaryStat = new TempSummaryStatistics(
             average(), deviation(), min(), max());
 
-        return summary;
+        return summaryStat;
     }
 
     public int addTemps(double... temps) {
