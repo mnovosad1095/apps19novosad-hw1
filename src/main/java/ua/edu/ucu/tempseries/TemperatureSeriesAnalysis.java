@@ -31,7 +31,7 @@ public class TemperatureSeriesAnalysis {
         checklen();
 
         for (double d : temperatureSeries) {
-            variation += Math.pow((d - avg), 2);
+            variation += (d - avg) * (d - avg);
         }
 
         return Math.sqrt((variation / (double) temperatureSeries.length));
